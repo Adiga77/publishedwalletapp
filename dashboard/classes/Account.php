@@ -98,6 +98,16 @@ class Account{
         return  $user;
     }
 
+     // total withdrawal by an individual
+     public function withdrawalsSum($user_id){
+      include "config/db_connect.php";
+      $sql = "SELECT SUM(amount) FROM withdrawals WHERE user_id=?";
+      $stmt =$pdo->prepare($sql);
+      $stmt->execute([$user_id]);
+      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+      return  $user;
+  }
+
 }
 
 ?>
